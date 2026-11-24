@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZapControl - Iniciar sesión</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body class="d-flex align-items-center justify-content-center min-vh-100 p-3">
+    <div class="login-card">
+        <div class="text-center mb-3"><img src="img/logo.png" alt="Logo ZapControl" class="login-logo"></div>
+        <div class="text-center mb-4">
+            <h1 class="h4 fw-bold text-dark mb-1">Bienvenido a ZapControl</h1>
+            <p class="text-secondary small mb-0">Inicia sesión para continuar</p>
+        </div>
+        <form id="formLoginZap" novalidate>
+            <div class="mb-3">
+                <label for="usuarioCorreoLogin" class="form-label">Usuario</label>
+                <input type="text" class="form-control" id="usuarioCorreoLogin" autocomplete="username" required>
+            </div>
+            <div class="mb-3">
+                <label for="contrasena" class="form-label">Contraseña</label>
+                <input type="password" class="form-control" id="contrasena" autocomplete="current-password" required>
+            </div>
+            <div id="errorLogin" class="alert alert-danger py-2 small" role="alert" hidden></div>
+            <button type="submit" class="btn btn-primary-custom shadow-sm mb-3">Entrar</button>
+            <a href="catalogo.html" class="btn btn-outline-custom">Consultar catálogo sin iniciar sesión</a>
+        </form>
+        <p class="text-center small mt-3 mb-0"><a href="Bienvenida.html" class="text-secondary">Volver al inicio</a></p>
+    </div>
+    <script src="js/sesion.js"></script>
+    <script src="model/modelo_usuarios.js"></script>
+    <script src="controller/controlador_login.js"></script>
+</body>
+</html>

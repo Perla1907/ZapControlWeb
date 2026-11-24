@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuarios - ZapControl</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/modulos.css">
+</head>
+<body data-solo-admin>
+    <!-- Barra superior -->
+    <nav class="navbar navbar-dark">
+        <div class="container-fluid">
+            <div class="d-flex align-items-center gap-2">
+                <button class="btn-menu" id="btnMenu" type="button" aria-label="Abrir menú"><i class="bi bi-list"></i></button>
+                <a class="navbar-brand mb-0 h1" href="dashboard.html"><img src="img/logo.png" alt="" width="28" height="28" class="me-2">ZapControl</a>
+            </div>
+            <div class="d-flex align-items-center gap-3 text-white small">
+                <span id="nombreUsuario" class="fw-semibold"></span>
+                <span id="rolUsuario" class="pildora"></span>
+                <button type="button" id="btnSalir" class="btn btn-sm btn-outline-light">Salir</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="d-flex contenedor-principal">
+        <!-- Barra lateral -->
+        <aside class="sidebar">
+            <nav class="nav flex-column gap-1" aria-label="Menú principal">
+                <a class="nav-link" href="dashboard.html"><i class="bi bi-speedometer2"></i> Dashboard</a>
+                <a class="nav-link" href="productos.html"><i class="bi bi-box-seam"></i> Productos</a>
+                <a class="nav-link" href="categorias.html" data-solo-admin><i class="bi bi-tags"></i> Categorías</a>
+                <a class="nav-link" href="inventario.html"><i class="bi bi-archive"></i> Inventario</a>
+                <a class="nav-link" href="catalogo.html"><i class="bi bi-grid"></i> Catálogo</a>
+                <a class="nav-link" href="ventas.html"><i class="bi bi-cart"></i> Ventas</a>
+                <a class="nav-link" href="reportes.html" data-solo-admin><i class="bi bi-bar-chart"></i> Reportes</a>
+                <a class="nav-link active" href="usuarios.html" data-solo-admin><i class="bi bi-people"></i> Usuarios</a>
+            </nav>
+        </aside>
+
+        <!-- Contenido de la pantalla -->
+        <main class="contenido flex-grow-1">
+            <header class="bg-white border-bottom px-4 py-3"><h1 class="h5 mb-0">Usuarios</h1></header>
+            <section id="contenidoDinamico" class="p-4">
+            <div id="mensaje" aria-live="polite" class="mb-3"></div>
+            <div class="row g-3">
+                <div class="col-lg-7">
+                    <div class="tarjeta mt-0"><div class="tabla-scroll"><table style="min-width:460px">
+                        <thead><tr><th>Nombre</th><th>Usuario</th><th>Rol</th><th class="acciones">Acciones</th></tr></thead>
+                        <tbody id="tablaUsuarios"></tbody>
+                    </table></div></div>
+                </div>
+                <div class="col-lg-5">
+                    <form id="formUsuario" class="tarjeta form-tarjeta mt-0" style="max-width:none" novalidate>
+                        <h3 class="h6 mb-3">Dar de alta usuario</h3>
+                        <div class="campo"><label for="nombreNuevo">Nombre completo</label><input type="text" id="nombreNuevo" maxlength="60"></div>
+                        <div class="campo"><label for="usuarioNuevo">Usuario</label><input type="text" id="usuarioNuevo" maxlength="30" autocomplete="off"></div>
+                        <div class="campo"><label for="passwordNuevo">Contraseña (mínimo 6 caracteres)</label><input type="text" id="passwordNuevo" maxlength="30" autocomplete="off"></div>
+                        <div class="campo"><label for="rolNuevo">Rol</label>
+                            <select id="rolNuevo" class="form-select"><option>Empleado</option><option>Administrador</option></select></div>
+                        <div id="avisoUsuario" aria-live="polite"></div>
+                        <div class="form-botones"><button type="submit" class="btn btn-primario btn-ancho">Registrar usuario</button></div>
+                    </form>
+                </div>
+            </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/sesion.js"></script>
+    <script src="js/panel.js"></script>
+    <script src="model/modelo_usuarios.js"></script>
+    <script src="views/vista_comun.js"></script>
+    <script src="controller/controlador_usuarios.js"></script>
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar producto - ZapControl</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/modulos.css">
+</head>
+<body>
+    <!-- Barra superior -->
+    <nav class="navbar navbar-dark">
+        <div class="container-fluid">
+            <div class="d-flex align-items-center gap-2">
+                <button class="btn-menu" id="btnMenu" type="button" aria-label="Abrir menú"><i class="bi bi-list"></i></button>
+                <a class="navbar-brand mb-0 h1" href="dashboard.html"><img src="img/logo.png" alt="" width="28" height="28" class="me-2">ZapControl</a>
+            </div>
+            <div class="d-flex align-items-center gap-3 text-white small">
+                <span id="nombreUsuario" class="fw-semibold"></span>
+                <span id="rolUsuario" class="pildora"></span>
+                <button type="button" id="btnSalir" class="btn btn-sm btn-outline-light">Salir</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="d-flex contenedor-principal">
+        <!-- Barra lateral -->
+        <aside class="sidebar">
+            <nav class="nav flex-column gap-1" aria-label="Menú principal">
+                <a class="nav-link" href="dashboard.html"><i class="bi bi-speedometer2"></i> Dashboard</a>
+                <a class="nav-link active" href="productos.html"><i class="bi bi-box-seam"></i> Productos</a>
+                <a class="nav-link" href="categorias.html" data-solo-admin><i class="bi bi-tags"></i> Categorías</a>
+                <a class="nav-link" href="inventario.html"><i class="bi bi-archive"></i> Inventario</a>
+                <a class="nav-link" href="catalogo.html"><i class="bi bi-grid"></i> Catálogo</a>
+                <a class="nav-link" href="ventas.html"><i class="bi bi-cart"></i> Ventas</a>
+                <a class="nav-link" href="reportes.html" data-solo-admin><i class="bi bi-bar-chart"></i> Reportes</a>
+                <a class="nav-link" href="usuarios.html" data-solo-admin><i class="bi bi-people"></i> Usuarios</a>
+            </nav>
+        </aside>
+
+        <!-- Contenido de la pantalla -->
+        <main class="contenido flex-grow-1">
+            <header class="bg-white border-bottom px-4 py-3"><h1 class="h5 mb-0">Editar producto</h1></header>
+            <section id="contenidoDinamico" class="p-4">
+            <p class="producto-descripcion">
+                            Cambia los datos del producto, ajusta las existencias de cada variante o agrega variantes nuevas.
+                        </p>
+
+                        <div id="mensaje" aria-live="polite"></div>
+
+                        <form id="formNuevoProducto" class="tarjeta form-tarjeta form-producto" novalidate>
+                            <h2 class="titulo-form" id="tituloForm">Editar producto</h2>
+
+                            <div class="producto-cols">
+                                <!-- Columna izquierda: datos del producto -->
+                                <div class="producto-col">
+                                    <div class="foto-fila" aria-hidden="true">
+                                        <div class="foto-miniatura">
+                                            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M7 18a4 4 0 0 1-.6-7.96A6 6 0 0 1 18 9.5a4.2 4.2 0 0 1-.5 8.5z"/></svg>
+                                        </div>
+                                        <span class="foto-texto">Fotografía del producto</span>
+                                        <div class="foto-camara">
+                                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l1.5-2h7L17 8h3a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/><circle cx="12" cy="13" r="3.5"/></svg>
+                                        </div>
+                                    </div>
+
+                                    <div class="producto-grid">
+                                        <div class="campo">
+                                            <label for="marca">Marca</label>
+                                            <select id="marca" required></select>
+                                        </div>
+                                        <div class="campo">
+                                            <label for="modelo">Modelo</label>
+                                            <input id="modelo" type="text" maxlength="100" placeholder="Ej. Air Max Excee" required>
+                                        </div>
+                                        <div class="campo">
+                                            <label for="categoria">Categoría</label>
+                                            <select id="categoria" required></select>
+                                        </div>
+                                        <div class="campo">
+                                            <label for="precio">Precio</label>
+                                            <input id="precio" type="text" inputmode="decimal" placeholder="$1,899.00" autocomplete="off" required>
+                                        </div>
+                                        <div class="campo producto-ancho">
+                                            <label for="ubicacion">Ubicación</label>
+                                            <select id="ubicacion" required></select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Columna derecha: variantes -->
+                                <div class="producto-col">
+                                    <h2 class="sub primero">Agregar variante nueva</h2>
+
+                                    <div class="campo">
+                                        <div class="fila-etiqueta">
+                                            <label for="color">Seleccionar color</label>
+                                            <button type="button" class="enlace" id="btnNuevoColor">+ Nuevo color</button>
+                                        </div>
+                                        <select id="color"></select>
+                                    </div>
+
+                                    <div id="panelColor" class="panel-color" hidden>
+                                        <div class="campo">
+                                            <label for="colorNombre">Nuevo color</label>
+                                            <div class="fila-color">
+                                                <input id="colorNombre" type="text" maxlength="30" placeholder="Ej. Naranja" autocomplete="off">
+                                                <input id="colorMuestra" type="color" value="#e8a020" aria-label="Elegir tono">
+                                            </div>
+                                        </div>
+                                        <div class="form-botones">
+                                            <button type="button" class="btn btn-ancho" id="btnCancelarColor">Cancelar</button>
+                                            <button type="button" class="btn btn-primario btn-ancho" id="btnGuardarColor">Guardar color</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="producto-grid">
+                                        <div class="campo">
+                                            <label for="talla">Talla</label>
+                                            <select id="talla"></select>
+                                        </div>
+                                        <div class="campo">
+                                            <label for="existencias">Existencias</label>
+                                            <input id="existencias" type="number" min="1" step="1" placeholder="Ej. 5">
+                                        </div>
+                                    </div>
+
+                                    <button type="button" class="btn btn-ancho-total" id="btnAgregarVariante">+ Agregar variante</button>
+                                    <p id="avisoVariante" class="aviso-variante" aria-live="polite"></p>
+
+                                    <h2 class="sub">Variantes del producto <small class="text-secondary fw-normal">(edita las existencias)</small></h2>
+                                    <div id="variantes" class="lista-variantes"></div>
+                                    <div class="resumen-variantes">
+                                        <span id="totalVariantes">0 variantes</span>
+                                        <strong id="totalPares">0 pares</strong>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="errorForm" class="aviso error" role="alert" hidden></div>
+
+                            <div class="form-botones producto-pie">
+                                <a href="productos.html" class="btn" style="text-align:center">Cancelar</a>
+                                <button type="submit" class="btn btn-primario">Guardar cambios</button>
+                            </div>
+                        </form>
+
+                        <div id="toast" class="toast" role="status" hidden></div>
+            </section>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/sesion.js"></script>
+    <script src="js/panel.js"></script>
+    <script src="model/modelo_categorias.js"></script>
+    <script src="model/modelo_productos.js"></script>
+    <script src="views/vista_nuevo_producto.js"></script>
+    <script src="views/vista_editar_producto.js"></script>
+    <script src="controller/controlador_nuevo_producto.js"></script>
+    <script src="controller/controlador_editar_producto.js"></script>
+</body>
+</html>

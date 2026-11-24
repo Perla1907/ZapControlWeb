@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo - ZapControl</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/modulos.css">
+</head>
+<body>
+    <!-- Catálogo público: solo consulta, sin iniciar sesión -->
+    <nav class="navbar navbar-dark">
+        <div class="container-fluid">
+            <span class="navbar-brand mb-0 h1"><img src="img/logo.png" alt="" width="28" height="28" class="me-2">ZapControl · Catálogo</span>
+            <a href="Bienvenida.html" id="btnVolver" class="btn btn-sm btn-outline-light">Volver al inicio</a>
+        </div>
+    </nav>
+    <main id="contenidoDinamico" class="container py-4">
+        <div class="mb-3">
+            <input id="buscarCatalogo" type="search" class="form-control" style="max-width:360px" placeholder="Buscar producto, marca o categoría">
+        </div>
+        <div class="row g-3" id="tarjetasCatalogo"></div>
+    </main>
+
+    <script src="js/sesion.js"></script>
+    <script src="model/modelo_categorias.js"></script>
+    <script src="model/modelo_productos.js"></script>
+    <script src="views/vista_comun.js"></script>
+    <script src="controller/controlador_catalogo.js"></script>
+    <script>
+        // Con sesión abierta el botón regresa al panel; sin sesión, a la bienvenida
+        if (Sesion.actual()) {
+            const volver = document.getElementById("btnVolver");
+            volver.href = "dashboard.html"; volver.textContent = "Volver al panel";
+        }
+    </script>
+</body>
+</html>

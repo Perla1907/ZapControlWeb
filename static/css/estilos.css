@@ -1,0 +1,225 @@
+
+:root {
+    --azul-oscuro: #0E2A47;
+    --azul-activo: #2360C4;
+    --fondo: #F4F6F9;
+}
+
+body {
+    margin: 0;
+    background-color: var(--fondo);
+}
+
+/*Barra superior*/
+.navbar {
+    background-color: var(--azul-oscuro);
+    min-height: 65px;
+}
+
+.contenedor-principal {
+    min-height: calc(100vh - 65px);
+}
+
+/*Menu Lateral*/
+.sidebar {
+    width: 240px;
+    flex-shrink: 0;
+    background-color: var(--azul-oscuro);
+    padding: 20px 10px;
+}
+
+.sidebar .nav-link {
+    color: #DDE7F3;
+    padding: 13px 18px;
+    border-radius: 8px;
+}
+
+.sidebar .nav-link i {
+    margin-right: 10px;
+}
+
+.sidebar .nav-link:hover {
+    background-color: #1B466F;
+    color: white;
+}
+
+.sidebar .nav-link.active {
+    background-color: var(--azul-activo);
+    color: white;
+}
+
+/*Contenido*/
+.contenido {
+    min-width: 0;
+}
+
+.pildora {
+    background: rgba(255, 255, 255, .14);
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 12px;
+}
+
+.btn-menu {
+    display: none;
+    background: none;
+    border: 0;
+    color: #fff;
+    font-size: 26px;
+    line-height: 1;
+    padding: 0;
+}
+
+/*Insignias*/
+.insignia {
+    display: inline-block;
+    padding: 2px 9px;
+    border-radius: 999px;
+    font-size: 10.5px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.insignia.ok {
+    background: #e6f4ea;
+    color: #14532d;
+}
+
+.insignia.bajo {
+    background: #fff4db;
+    color: #7a4b00;
+}
+
+.insignia.agotado {
+    background: #fdeceb;
+    color: #8a1c14;
+}
+
+/*Responsive*/
+@media (max-width: 768px) {
+    .btn-menu {
+        display: inline-block;
+    }
+
+    .sidebar {
+        position: fixed;
+        top: 65px;
+        bottom: 0;
+        left: 0;
+        z-index: 1030;
+        transform: translateX(-100%);
+        transition: transform .2s;
+        box-shadow: 4px 0 20px rgba(0, 0, 0, .2);
+    }
+
+    body.menu-abierto .sidebar {
+        transform: none;
+    }
+}
+
+/* ===== Bienvenida y login ===== */
+.login-logo {
+    width: 96px;
+    height: 96px;
+    object-fit: contain;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 380px;
+    background: #fff;
+    border-radius: 16px;
+    padding: 28px 26px;
+    box-shadow: 0 10px 40px rgba(14, 42, 71, .12);
+}
+
+.pagina-acceso {
+    min-height: 100vh;
+    background: linear-gradient(160deg, #0E2A47 0%, #1B466F 100%);
+}
+
+.mobile-splash-card {
+    width: 100%;
+    max-width: 380px;
+    min-height: 560px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 36px 28px;
+    border-radius: 28px;
+    background: rgba(255, 255, 255, .06);
+    border: 1px solid rgba(255, 255, 255, .12);
+}
+
+/*Botones*/
+.btn-primary-custom {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    border: 0;
+    border-radius: 12px;
+    background: #2360C4;
+    color: #fff;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+}
+
+.btn-primary-custom:hover {
+    background: #1b4fa6;
+    color: #fff;
+}
+
+.btn-outline-custom {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #2360C4;
+    border-radius: 12px;
+    background: transparent;
+    color: #2360C4;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+}
+
+.btn-outline-custom:hover {
+    background: #eef3fb;
+    color: #1b4fa6;
+}
+
+.btn-outline-light-custom {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    border: 1px solid rgba(255, 255, 255, .6);
+    border-radius: 12px;
+    background: transparent;
+    color: #fff;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+}
+
+.btn-outline-light-custom:hover {
+    background: rgba(255, 255, 255, .12);
+    color: #fff;
+}
+
+/* ===== Impresión de etiquetas (solo sale la hoja de etiquetas) ===== */
+@media print {
+    .navbar,
+    .sidebar,
+    .contenido > header {
+        display: none !important;
+    }
+
+    #contenidoDinamico {
+        padding: 0 !important;
+    }
+
+    #contenidoDinamico > *:not(#hojaEtiquetas) {
+        display: none !important;
+    }
+}
